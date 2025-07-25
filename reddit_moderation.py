@@ -1,7 +1,24 @@
 import streamlit as st
 import joblib
 import numpy as np
+import re
+import nltk
+from nltk.corpus import stopwords
 
+# Download stopwords if not done already
+nltk.download('stopwords')
+stop_words = set(stopwords.words('english'))
+
+def preprocess(text):
+    text = text.lower()  # Lowercase text
+    text = re.sub(r'[^a-zA-Z\s]', '', text)  # Remove punctuation/numbers/symbols
+    text = re.sub(r'\s+', ' ', text).strip()  # Remove extra spaces
+
+    # Remove stopwords
+    words = text.split()
+    filtered_words = [word for word in words if word not in stop_words]
+    return ' '.join(filtered_words)
+    
 # Load model and vectorizer
 model = joblib.load("model.pkl")
 vectorizer = joblib.load("vectorizer.pkl")
