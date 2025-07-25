@@ -178,7 +178,6 @@ submission.to_csv('submission.csv', index=False)
 # Confirm it's saved
 submission.head()
 
-!jupyter nbconvert --to script reddit_moderation.ipynb
 
 """# 🛡️ Reddit Rule Violation Classifier
 This project builds a machine learning model to detect whether Reddit comments break subreddit rules. Inspired by real-world moderation challenges, the model is trained on a synthetic but realistic dataset.
