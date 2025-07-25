@@ -217,3 +217,24 @@ We transform the cleaned text into numerical features using TF-IDF (Term Frequen
 
 We use a simple but effective model (e.g., Logistic Regression or Naive Bayes) to classify the comments. Then, we evaluate the model using accuracy, precision, recall, and F1 score.
 """
+
+st.markdown("## 🧠 Try It Yourself!")
+st.markdown("Paste a Reddit comment below and find out if it violates subreddit rules.")
+
+# Text input box
+user_input = st.text_area("✏️ Enter a Reddit comment:")
+
+# Check button
+if st.button("🔍 Check for Violation"):
+    if user_input.strip() == "":
+        st.warning("Please enter a comment to check.")
+    else:
+        # Preprocess and predict
+        user_vector = vectorizer.transform([user_input])
+        prediction = model.predict(user_vector)[0]
+
+        # Show result
+        if prediction == 1:
+            st.error("🚫 This comment *violates* subreddit rules.")
+        else:
+            st.success("✅ This comment is *safe*.")
