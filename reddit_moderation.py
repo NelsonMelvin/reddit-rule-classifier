@@ -20,8 +20,8 @@ def preprocess(text):
     return ' '.join(filtered_words)
     
 # Load model and vectorizer
-model = joblib.load("reddit_model.pkl")
-vectorizer = joblib.load("reddit_vectorizer.pkl")
+joblib.dump(model, 'reddit_model.pkl')
+joblib.dump(vectorizer, 'reddit_vectorizer.pkl')
 
 # App Title
 st.title("🚨 Reddit Rule Violation Classifier")
